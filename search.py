@@ -324,6 +324,7 @@ class Search(object):
             logging.error(e)
     
     def magnetyze(self, search_query, sites=("rarbg", "x1377"), scrape_limit=10, max_file_size_gb=3):
+        self.magnets = []
         func_dict = {"tpb": self.tpb,
                      "rarbg": self.rarbg,
                      "x1377": self.x1377,
@@ -335,3 +336,6 @@ class Search(object):
         for site in sites:
             scrape = func_dict[site]
             scrape()
+        if len(self.magnets) > 0:
+            return self.magnets
+        return
